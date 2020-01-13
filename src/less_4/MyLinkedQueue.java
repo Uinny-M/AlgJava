@@ -3,7 +3,7 @@ package less_4;
 /**
  * Created by mma on 13.01.2020.
  */
-public class MyLinkedQueue<T> {
+public class MyLinkedQueue<T>{
     private MyLinkedList<T> queue = new MyLinkedList<>();
 
     public int size(){
