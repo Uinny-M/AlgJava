@@ -1,5 +1,7 @@
 package Less_5;
 
+import java.util.List;
+
 /**
  * Created by mma on 16.01.2020.
  */
@@ -12,8 +14,27 @@ public class Main {
 //        System.out.println(triangleNum(5));
 //        System.out.println(recTriangleNum(5));
 //        System.out.println(recMultipy(3, 8));
-        System.out.println(sumDigit(46723));
-        System.out.println(recSumDigit(46723));
+//        System.out.println(sumDigit(46723));
+//        System.out.println(recSumDigit(46723));
+        System.out.println(exponent(4, 3));
+        System.out.println(recExponent(4, 3));
+
+        //Задача о рюкзаке
+        Backpack backpack1 = new Backpack(10);
+        MyArray store = new MyArray(10);
+        store.add(new Subject("Яблоко", 1, 100));
+        store.add(new Subject("Гиря", 8, 100));
+        store.add(new Subject("Планшет", 3, 2700));
+        store.add(new Subject("кошелек", 2, 1000));
+        store.add(new Subject("блокнот", 2, 100));
+        store.add(new Subject("учебник", 2, 500));
+        store.add(new Subject("свитер", 1, 300));
+        store.add(new Subject("косметичка", 2, 2000));
+        store.add(new Subject( 4, 600));
+
+
+        backpack1.filling(store);
+
     }
 
     static int fact(int n) {
@@ -86,4 +107,23 @@ public class Main {
         }
         return recSumDigit(n / 10) + n % 10;
     }
+
+    //Возведение в степень
+    static int exponent(int a, int n) {
+        int result = 1;
+        while (n > 0) {
+            result *= a;
+            n--;
+        }
+        return result;
+    }
+
+    static int recExponent(int a, int n) {
+        if (n == 0) {
+            return 1;
+        }
+        return recExponent(a, n - 1) * a;
+    }
+
+
 }
