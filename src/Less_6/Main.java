@@ -11,15 +11,16 @@ public class Main {
         map.put(2,"two");
         map.put(4,"four");
 
-
         System.out.println(map.get(1));
         System.out.println(map.get(2));
         map.delete(2);
         map.delete(3);
         System.out.println(map.contains(2));
         System.out.println(map.contains(1));
-
         System.out.println(map);
+
+
+
 
     }
 }
