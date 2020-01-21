@@ -45,12 +45,12 @@ public class MyTreeMap<Key extends Comparable<Key>, Value> {
         return get(key) != null;
     }
 
-     final Value get(Key key) {
+    final Value get(Key key) {
         isKeyNotNull(key);
         return getit(root, key);
     }
 
-     private Value getit(Node node, Key key) {
+    private Value getit(Node node, Key key) {
         if (node == null) {
             return null;
         }
@@ -64,7 +64,7 @@ public class MyTreeMap<Key extends Comparable<Key>, Value> {
         }
     }
 
-     final void put(Key key, Value value) {
+    final void put(Key key, Value value) {
         isKeyNotNull(key);
         if (value == null) {
 
@@ -116,7 +116,7 @@ public class MyTreeMap<Key extends Comparable<Key>, Value> {
         return node;
     }
 
-      void delete(Key key) {
+    void delete(Key key) {
         isKeyNotNull(key);
         root = delete(root, key);
     }
@@ -146,17 +146,43 @@ public class MyTreeMap<Key extends Comparable<Key>, Value> {
         return node;
     }
 
+    public Node getRoot(MyTreeMap myTreeMap) {
+        return root;
+    }
+
     @Override
     public String toString() {
         return toString(root);
     }
 
     private String toString(Node node) {
-        if(node == null){
+        if (node == null) {
             return "";
         }
         return toString(node.left)
                 + "[" + node.key + "=" + node.value + "], "
                 + toString(node.right);
+    }
+
+    //Поиск глубины дерева
+    public int deepOfTree(Node node) {
+        int deep = 0;
+        int d1 = 0, d2 = 0;
+        if (node == null) return 0;
+        else if (node.left != null) {
+            d1 = deepOfTree(node.left);
+        } else if (node.right != null) {
+            d2 = deepOfTree(node.right);
+        }
+
+        if (d1 > d2) deep = d1 + 1;
+        else deep = d2 + 1;
+
+        return deep;
+    }
+
+    //оценка сбалансированности
+    boolean isBalance(Node node) {
+        return Math.abs(deepOfTree(node.left) - deepOfTree(node.right)) <= 1;
     }
 }
