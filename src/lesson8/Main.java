@@ -38,13 +38,17 @@ public class Main {
 //        System.out.println(map.get(4));
 
         Random random = new Random();
-        for (int i = 0; i < 80; i++) {
+        for (int i = 0; i < 30; i++) {
             map.put(random.nextInt(1000), "");
         }
 
 
+
+        map.put(444, "aaa");
         System.out.println(map);
 
+        map.del(444);
+        System.out.println(map);
 
 //        LinkedList ls = new LinkedList();
 //        ls.removeIf(x -> x.equals("java"));
