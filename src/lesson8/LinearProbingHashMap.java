@@ -1,8 +1,10 @@
 package lesson8;
 
 public class LinearProbingHashMap<Key, Value> {
-    private int capacity = 97;
+    private int capacity = 40;
     private int size = 0;
+    private Integer key0 = 2147483647;
+
 
     private Key[] keys = (Key[]) new Object[capacity];
     private Value[] values = (Value[]) new Object[capacity];
@@ -40,16 +42,19 @@ public class LinearProbingHashMap<Key, Value> {
         }
 
         int i;
-        for (i = hash(key); keys[i] != null; i = (i + 1) % capacity) {
+        for (i = hash(key); keys[i] != null&&keys[i] != key0; i = (i + 1) % capacity) {
             if (key.equals(keys[i])) {
                 values[i] = value;
                 return;
             }
         }
+
         keys[i] = key;
         values[i] = value;
         size++;
     }
+
+
 
     public Value get(Key key) {
         isKeyNotNull(key);
@@ -63,10 +68,24 @@ public class LinearProbingHashMap<Key, Value> {
 
     @Override
     public String toString() {
-        StringBuilder sb= new StringBuilder();
-        for (int i = 0; i <capacity ; i++) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < capacity; i++) {
             sb.append(keys[i]).append(", ");
         }
         return sb.toString();
+    }
+
+    //домашка к 8 уроку
+    public void del(Key key) {
+        isKeyNotNull(key);
+        int j = 0;
+        for (int i = 0; i < capacity; i++) {
+            if (key.equals(keys[i])) {
+                keys[i]=(Key)key0;
+                values[i] = null;
+                size--;
+                return;
+            }
+        }
     }
 }
